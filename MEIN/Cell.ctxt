@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.params=x\ y
+comment0.target=Cell(int,\ int)
+comment1.params=
+comment1.target=void\ act()
+comment2.params=
+comment2.target=void\ reveal()
+comment3.params=
+comment3.target=void\ flag()
+comment4.params=
+comment4.target=void\ updateImage()
+comment5.params=
+comment5.target=void\ setMine()
+comment6.params=
+comment6.target=boolean\ hasMine()
+comment7.params=count
+comment7.target=void\ setAdjacentMines(int)
+comment8.params=
+comment8.target=int\ getAdjacentMines()
+comment9.params=
+comment9.target=boolean\ isRevealed()
+numComments=10

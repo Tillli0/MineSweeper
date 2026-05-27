@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=
+comment0.target=MinesweeperWorld()
+comment1.params=width\ height\ mineCount
+comment1.target=MinesweeperWorld(int,\ int,\ int)
+comment2.params=
+comment2.target=void\ initialize()
+comment3.params=
+comment3.target=void\ placeMines()
+comment4.params=
+comment4.target=void\ calculateNumbers()
+comment5.params=x\ y
+comment5.target=int\ countAdjacentMines(int,\ int)
+comment6.params=x\ y
+comment6.target=void\ revealCell(int,\ int)
+comment7.params=won
+comment7.target=void\ gameOver(boolean)
+numComments=8
