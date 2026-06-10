@@ -24,7 +24,6 @@ public class MinesweeperWorld extends World {
         initialize();
     }
 
-    
     private void initialize() {
         // Zellen erstellen
         for (int x = 0; x < WIDTH; x++) {
