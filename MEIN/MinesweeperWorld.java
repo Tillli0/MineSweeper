@@ -8,12 +8,6 @@ public class MinesweeperWorld extends World {
     private int MINE_COUNT;
     private Cell[][] grid;
     
-    // Button-Bereich für "Menu" Button
-    private int backButtonX = 2;
-    private int backButtonY = 2;
-    private int backButtonWidth = 80;
-    private int backButtonHeight = 25;
-    
     // Konstruktor OHNE Parameter (Standard-Werte)
     public MinesweeperWorld() {
         this(10, 10, 10); // Ruft den anderen Konstruktor auf
@@ -46,40 +40,10 @@ public class MinesweeperWorld extends World {
     }
     
     public void act() {
-        // Maus-Klick auf "Menu" Button prüfen
-        if (Greenfoot.mouseClicked(null)) {
-            greenfoot.MouseInfo mouse = Greenfoot.getMouseInfo();
-            if (mouse != null) {
-                int mouseX = mouse.getX();
-                int mouseY = mouse.getY();
-                
-                // Button geklickt?
-                if (mouseX >= backButtonX && mouseX <= backButtonX + backButtonWidth &&
-                    mouseY >= backButtonY && mouseY <= backButtonY + backButtonHeight) {
-                    Greenfoot.setWorld(new StartScreen());
-                }
-            }
+        // ESC-Taste zum Zurück zum StartScreen prüfen
+        if (Greenfoot.isKeyDown("escape")) {
+            Greenfoot.setWorld(new StartScreen());
         }
-        
-        drawUI();
-    }
-    
-    private void drawUI() {
-        // Button zeichnen auf dem Hintergrund
-        GreenfootImage bg = getBackground();
-        
-        // Button Hintergrund (Grün)
-        bg.setColor(Color.GREEN);
-        bg.fillRect(backButtonX, backButtonY, backButtonWidth, backButtonHeight);
-        
-        // Button Border
-        bg.setColor(Color.DARK_GRAY);
-        bg.drawRect(backButtonX, backButtonY, backButtonWidth, backButtonHeight);
-        
-        // Button Text
-        bg.setFont(new Font("Arial", Font.BOLD, 11));
-        bg.setColor(Color.BLACK);
-        bg.drawString("Menu", backButtonX + 25, backButtonY + 18);
     }
     
     private void placeMines() {
