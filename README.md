@@ -6,35 +6,39 @@ Klassisches Minesweeper-Spiel in Java mit Greenfoot.
 
 ## Projektübersicht
 
-- Drei Schwierigkeitsstufen: Easy (9×9,10), Medium (12×12,30), Hard (16×16,99)
-- Custom-Modus: Breite, Höhe, Minen frei wählbar
+- Drei Schwierigkeitsstufen:
+  - Easy (9×9, 10 Minen)
+  - Medium (12×12, 30 Minen)
+  - Hard (16×16, 99 Minen)
+- **Custom-Modus** (derzeit noch nicht funktionsfähig)
+- Zufällige Minenplatzierung
 - Automatisches Aufdecken leerer Felder (Flood Fill)
 - Flaggen zum Markieren vermuteter Minen
-- Zufällige Minenplatzierung bei jedem Spielstart
 
 ---
 
 ## Dateien
 
 ### StartScreen.java
-- Menü zur Auswahl der Schwierigkeit oder benutzerdefinierter Werte
+- Menü zur Auswahl der Schwierigkeit
 - Steuerung:  
   - ← / → : Schwierigkeit wechseln  
-  - TAB : Eingabefeld wechseln  
-  - 0–9 : Werte eingeben  
   - ENTER : Spiel starten  
+- **Custom-Modus**:  
+  - Aktuell noch nicht korrekt implementiert. Die Eingabe eigener Breite, Höhe und Minenanzahl funktioniert nicht zuverlässig.  
 
 ### MinesweeperWorld.java
-- Das Spielfeld
-- Initialisierung der Zellen, Platzierung der Minen, Berechnung der Zahlen
-- Aufdecken von Zellen und Flood Fill
+- Erzeugt das Spielfeld
+- Platziert Minen zufällig
+- Berechnet die Zahlen der angrenzenden Minen
+- Aufdecken der Zellen und Flood Fill
 - Spielende bei Aufdecken einer Mine
 
 ### Cell.java
-- Einzelne Zelle auf dem Spielfeld
-- Eigenschaften: Mine, aufgedeckt, markiert, Anzahl angrenzender Minen
+- Einzelne Spielfeldzelle
+- Eigenschaften: Mine, aufgedeckt, markiert, angrenzende Minen
 - Steuerung:  
-  - Linksklick: aufdecken  
+  - Linksklick: Feld aufdecken  
   - Rechtsklick: Flagge setzen/entfernen
 
 ---
@@ -49,17 +53,19 @@ Klassisches Minesweeper-Spiel in Java mit Greenfoot.
 
 ---
 
-## Validierung (Custom-Modus)
-
-- Breite ≥ 2, Höhe ≥ 2  
-- Minen ≥ 1 und ≤ Breite × Höhe − 1
-
----
-
 ## Darstellung
 
 - Verdecktes Feld: Grau  
 - Aufgedecktes Feld: Hellgrau  
-- Zahl: Blau  
+- Zahl: Blau (zeigt angrenzende Minen)  
 - Mine: Schwarzes "*"  
 - Flagge: Roter Hintergrund mit Flaggensymbol
+
+---
+
+## Bekannte Probleme
+
+- Der Custom-Modus ist aktuell noch nicht funktionsfähig.  
+- Die Eingabe von Breite, Höhe und Minenanzahl wird derzeit nicht korrekt übernommen.  
+- Die vordefinierten Schwierigkeitsstufen funktionieren einwandfrei.  
+- Behebung des Custom-Modus ist für eine zukünftige Version geplant.
