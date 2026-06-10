@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.awt.*;
 import java.util.*;
 
 public class MinesweeperWorld extends World {
@@ -6,6 +7,12 @@ public class MinesweeperWorld extends World {
     private int HEIGHT;
     private int MINE_COUNT;
     private Cell[][] grid;
+    
+    // Button-Bereich für "Zurück zum StartScreen"
+    private int backButtonX = 10;
+    private int backButtonY = 10;
+    private int backButtonWidth = 120;
+    private int backButtonHeight = 40;
     
     // Konstruktor OHNE Parameter (Standard-Werte)
     public MinesweeperWorld() {
@@ -35,6 +42,42 @@ public class MinesweeperWorld extends World {
         placeMines();
         // Zahlen berechnen
         calculateNumbers();
+    }
+    
+    public void act() {
+        // Maus-Klick auf "Zurück zum StartScreen" Button prüfen
+        if (Greenfoot.mouseClicked(null)) {
+            greenfoot.MouseInfo mouse = Greenfoot.getMouseInfo();
+            if (mouse != null) {
+                int mouseX = mouse.getX();
+                int mouseY = mouse.getY();
+                
+                // Button geklickt?
+                if (mouseX >= backButtonX && mouseX <= backButtonX + backButtonWidth &&
+                    mouseY >= backButtonY && mouseY <= backButtonY + backButtonHeight) {
+                    Greenfoot.setWorld(new StartScreen());
+                }
+            }
+        }
+        
+        drawUI();
+    }
+    
+    private void drawUI() {
+        // Button zeichnen
+        GreenfootImage bg = getBackground();
+        
+        // Button Hintergrund
+        bg.setColor(new Color(200, 200, 200));
+        bg.fillRect(backButtonX, backButtonY, backButtonWidth, backButtonHeight);
+        
+        // Button Border
+        bg.setColor(Color.BLACK);
+        bg.drawRect(backButtonX, backButtonY, backButtonWidth, backButtonHeight);
+        
+        // Button Text
+        bg.setFont(new Font("Arial", Font.BOLD, 12));
+        bg.drawString("< Menu", backButtonX + 25, backButtonY + 28);
     }
     
     private void placeMines() {
