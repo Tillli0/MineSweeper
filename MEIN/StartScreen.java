@@ -6,11 +6,6 @@ public class StartScreen extends World {
     private int inputHeight = 9;
     private int inputMines = 10;
     
-    // Schwierigkeitsstufen
-    private static final int[][] DIFFICULTY_EASY = {9, 9, 10};
-    private static final int[][] DIFFICULTY_MEDIUM = {12, 12, 30};
-    private static final int[][] DIFFICULTY_HARD = {16, 16, 99};
-    
     private String currentInput = "";
     private String selectedField = "difficulty"; // "difficulty", "width", "height", "mines"
     private int selectedDifficulty = 0; // 0=Easy, 1=Medium, 2=Hard, 3=Custom
@@ -110,6 +105,8 @@ public class StartScreen extends World {
             // Custom-Mode
             drawCustomScreen(bg);
         }
+        
+        getBackground().drawImage(bg, 0, 0);
     }
     
     private void drawDifficultyScreen(GreenfootImage bg) {
@@ -117,8 +114,8 @@ public class StartScreen extends World {
         bg.drawString("Wähle eine Schwierigkeit:", 50, 120);
         
         // Schwierigkeitsstufen zeichnen
-        String[] difficulties = {"Easy\n(9x9, 10 Minen)", "Medium\n(12x12, 30 Minen)", "Hard\n(16x16, 99 Minen)", "Custom"};
-        int[] colors = {Color.GREEN.getRGB(), Color.YELLOW.getRGB(), Color.RED.getRGB(), Color.BLUE.getRGB()};
+        String[] difficulties = {"Easy\n(9x9, 10)", "Medium\n(12x12, 30)", "Hard\n(16x16, 99)", "Custom"};
+        Color[] colors = {Color.GREEN, Color.YELLOW, Color.RED, Color.BLUE};
         
         for (int i = 0; i < 4; i++) {
             int x = 50 + (i * 120);
@@ -126,10 +123,9 @@ public class StartScreen extends World {
             
             // Rahmen
             if (selectedDifficulty == i) {
-                bg.setColor(new Color(colors[i]));
+                bg.setColor(colors[i]);
                 bg.fillRect(x - 10, y - 10, 110, 100);
                 bg.setColor(Color.BLACK);
-                bg.setStroke(new BasicStroke(3));
                 bg.drawRect(x - 10, y - 10, 110, 100);
             } else {
                 bg.setColor(Color.LIGHT_GRAY);
@@ -174,7 +170,7 @@ public class StartScreen extends World {
         int maxMines = inputWidth * inputHeight - 1;
         if (inputMines > maxMines) {
             bg.setColor(Color.RED);
-            bg.drawString("⚠ Zu viele Minen! Max: " + maxMines, 50, 440);
+            bg.drawString("Zu viele Minen! Max: " + maxMines, 50, 440);
         }
     }
     
@@ -200,18 +196,23 @@ public class StartScreen extends World {
         // Validierung
         if (selectedDifficulty < 3) {
             // Vordefinierte Schwierigkeit laden
-            int[] difficulty = null;
+            int width = 9, height = 9, mines = 10;
+            
             if (selectedDifficulty == 0) {
-                difficulty = DIFFICULTY_EASY;
+                width = 9;
+                height = 9;
+                mines = 10;
             } else if (selectedDifficulty == 1) {
-                difficulty = DIFFICULTY_MEDIUM;
+                width = 12;
+                height = 12;
+                mines = 30;
             } else if (selectedDifficulty == 2) {
-                difficulty = DIFFICULTY_HARD;
+                width = 16;
+                height = 16;
+                mines = 99;
             }
             
-            if (difficulty != null) {
-                Greenfoot.setWorld(new MinesweeperWorld(difficulty[0], difficulty[1], difficulty[2]));
-            }
+            Greenfoot.setWorld(new MinesweeperWorld(width, height, mines));
         } else {
             // Custom-Werte
             if (inputWidth < 2 || inputHeight < 2) {
