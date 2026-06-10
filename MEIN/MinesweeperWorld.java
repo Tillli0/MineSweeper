@@ -8,11 +8,11 @@ public class MinesweeperWorld extends World {
     private int MINE_COUNT;
     private Cell[][] grid;
     
-    // Button-Bereich für "Zurück zum StartScreen"
-    private int backButtonX = 10;
-    private int backButtonY = 10;
-    private int backButtonWidth = 120;
-    private int backButtonHeight = 40;
+    // Button-Bereich für "Menu" Button
+    private int backButtonX = 2;
+    private int backButtonY = 2;
+    private int backButtonWidth = 80;
+    private int backButtonHeight = 25;
     
     // Konstruktor OHNE Parameter (Standard-Werte)
     public MinesweeperWorld() {
@@ -26,6 +26,7 @@ public class MinesweeperWorld extends World {
         this.HEIGHT = height;
         this.MINE_COUNT = mineCount;
         grid = new Cell[WIDTH][HEIGHT];
+        
         initialize();
     }
 
@@ -45,7 +46,7 @@ public class MinesweeperWorld extends World {
     }
     
     public void act() {
-        // Maus-Klick auf "Zurück zum StartScreen" Button prüfen
+        // Maus-Klick auf "Menu" Button prüfen
         if (Greenfoot.mouseClicked(null)) {
             greenfoot.MouseInfo mouse = Greenfoot.getMouseInfo();
             if (mouse != null) {
@@ -64,20 +65,21 @@ public class MinesweeperWorld extends World {
     }
     
     private void drawUI() {
-        // Button zeichnen
+        // Button zeichnen auf dem Hintergrund
         GreenfootImage bg = getBackground();
         
-        // Button Hintergrund
-        bg.setColor(new Color(200, 200, 200));
+        // Button Hintergrund (Grün)
+        bg.setColor(Color.GREEN);
         bg.fillRect(backButtonX, backButtonY, backButtonWidth, backButtonHeight);
         
         // Button Border
-        bg.setColor(Color.BLACK);
+        bg.setColor(Color.DARK_GRAY);
         bg.drawRect(backButtonX, backButtonY, backButtonWidth, backButtonHeight);
         
         // Button Text
-        bg.setFont(new Font("Arial", Font.BOLD, 12));
-        bg.drawString("< Menu", backButtonX + 25, backButtonY + 28);
+        bg.setFont(new Font("Arial", Font.BOLD, 11));
+        bg.setColor(Color.BLACK);
+        bg.drawString("Menu", backButtonX + 25, backButtonY + 18);
     }
     
     private void placeMines() {
